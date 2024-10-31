@@ -10,7 +10,7 @@ import lombok.experimental.FieldNameConstants;
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @FieldNameConstants
 @AllArgsConstructor
 @NoArgsConstructor
