@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarDto {
-    private long id;
+    private Long id;
     private String brand;
     private String model;
-    private long vin;
+    private String vin;
     private boolean status;
     private CompanyDto company;
 }

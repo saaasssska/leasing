@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
-    private long numDriverLicense;
+    private Long numDriverLicense;
 }

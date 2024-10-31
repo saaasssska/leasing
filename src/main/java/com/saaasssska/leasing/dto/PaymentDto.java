@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDto {
-    private long id;
-    private Date datePay;
-    private long amountPay;
+    private Long id;
+    private Date date;
+    private Long amount;
     private LeaseDto lease;
 }

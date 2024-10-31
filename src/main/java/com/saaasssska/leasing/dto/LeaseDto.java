@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LeaseDto {
-    private long id;
+    private Long id;
     private Date startDate;
     private Date endDate;
     private CarDto car;
