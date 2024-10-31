@@ -1,4 +1,4 @@
 package com.saaasssska.leasing.mapper;
 
-public interface DataMapper {
+public interface CarMapper {
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -12,8 +13,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDto {
-    private long id;
-    private Date datePay;
-    private long amountPay;
+    private Long id;
+    private LocalDateTime date;
+    private Long amount;
     private LeaseDto lease;
 }

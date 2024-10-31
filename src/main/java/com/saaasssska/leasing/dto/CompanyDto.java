@@ -12,10 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompanyDto {
-    private long id;
-    private String NameCompany;
-    private Date formationDate;
-    private long inn;
-
-
+    private Long id;
+    private String name;
+    private Long inn;
 }
