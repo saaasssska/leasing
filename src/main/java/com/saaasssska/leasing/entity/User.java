@@ -20,11 +20,11 @@ public class User {
     @Column(unique = true)
     private Long id;
 
-    @Column(name = "first_name", nullable = false, length = 30)
-    private String firstName;
+    @Column(name = "name", nullable = false, length = 30)
+    private String name;
 
-    @Column(name = "last_name", nullable = false, length = 30)
-    private String lastName;
+    @Column(name = "surname", nullable = false, length = 30)
+    private String surname;
 
     @Column(name = "num_driver_license", nullable = false, length = 10)
     private Long numDriverLicense;

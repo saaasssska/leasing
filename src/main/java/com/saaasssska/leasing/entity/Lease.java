@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -24,17 +25,17 @@ public class Lease {
     @Column(unique = true)
     private Long id;
 
-    @Column(name = "start_date", nullable = false)
-    private Date startDate;
+    @Column(name = Fields.startDate, nullable = false)
+    private LocalDateTime startDate;
 
-    @Column(name = "end_date", nullable = false)
-    private Date endDate;
+    @Column(name = Fields.endDate, nullable = false)
+    private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "car_id", nullable = false)
-    private CarDto car;
+    private Car car;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_id", nullable = false)
-    private UserDto user;
+    private User user;
 }

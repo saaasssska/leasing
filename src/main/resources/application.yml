@@ -1,3 +1,10 @@
 spring:
   application:
     name=leasing:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/leasing
+    username: postgres
+    password: password
+  jra:
+    hibernate:
+      ddl-auto: update

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,8 +14,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class LeaseDto {
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private CarDto car;
     private UserDto user;
 }
