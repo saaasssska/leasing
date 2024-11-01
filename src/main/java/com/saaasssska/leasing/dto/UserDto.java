@@ -14,4 +14,6 @@ public class UserDto {
     private String name;
     private String surname;
     private Long numDriverLicense;
+    private String login;
+    private String password;
 }

@@ -28,4 +28,10 @@ public class User {
 
     @Column(name = "num_driver_license", nullable = false, length = 10)
     private Long numDriverLicense;
+
+    @Column(name = "login", nullable = false, unique = true)
+    private String login;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 }
