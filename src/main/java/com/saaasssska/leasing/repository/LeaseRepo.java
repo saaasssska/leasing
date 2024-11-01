@@ -1,4 +1,7 @@
 package com.saaasssska.leasing.repository;
 
-public interface LeaseRepo {
+import com.saaasssska.leasing.entity.Lease;
+import org.springframework.data.repository.CrudRepository;
+
+public interface LeaseRepo extends CrudRepository<Lease, Long> {
 }
