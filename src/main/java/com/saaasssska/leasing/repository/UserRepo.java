@@ -4,4 +4,5 @@ import com.saaasssska.leasing.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepo extends CrudRepository<User, Long> {
+    User findOneByLoginAndPassword(String login, String password);
 }
