@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Long deleteUser(Long id) {
-        return null;
+    public void deleteUser(Long id) {
+
     }
 
     @Override

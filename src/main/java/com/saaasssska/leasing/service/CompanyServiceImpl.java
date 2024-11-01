@@ -31,7 +31,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public List<Company> getAllCompany(Pageable pageable) {
+    public List<CompanyDto> getAllCompany(Pageable pageable) {
         return null;
     }
 }

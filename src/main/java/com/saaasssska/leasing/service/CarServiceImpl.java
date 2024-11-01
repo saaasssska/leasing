@@ -8,10 +8,8 @@ import com.saaasssska.leasing.repository.CarRepo;
 import com.saaasssska.leasing.repository.CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.awt.print.Pageable;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -44,12 +42,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<Car> getAllCar(Pageable pageable) {
-        return carRepo.findAll(pageable).stream().map(carMapper::toCarDto);
+    public Page<CarDto> getAllCar(Pageable pageable) {
+        return carRepo.findAll(pageable).map(carMapper::toCarDto);
+
     }
 
     @Override
-    public Page<Car> getCarsByCompany(CompanyDto companyDto) {
+    public Page<CarDto> getCarsByCompany(CompanyDto companyDto) {
         return null;
     }
 }

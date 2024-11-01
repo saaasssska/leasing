@@ -35,7 +35,7 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
     @Override
-    public List<Payment> getPaymentsByLease(LeaseDto leaseDto) {
+    public List<PaymentDto> getPaymentsByLease(LeaseDto leaseDto) {
         return null;
     }
 }

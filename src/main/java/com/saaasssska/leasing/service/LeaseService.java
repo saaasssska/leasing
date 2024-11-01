@@ -2,7 +2,6 @@ package com.saaasssska.leasing.service;
 
 import com.saaasssska.leasing.dto.LeaseDto;
 import com.saaasssska.leasing.dto.UserDto;
-import com.saaasssska.leasing.entity.Lease;
 import org.springframework.data.domain.Page;
 
 public interface LeaseService {
@@ -10,5 +9,5 @@ public interface LeaseService {
     Long deleteLease(Long id);
     Long updateLease(LeaseDto leaseDto);
     Long getLeaseById(Long id);
-    Page<Lease> getLeasesByUser(UserDto userDto);
+    Page<LeaseDto> getLeasesByUser(UserDto userDto);
 }
