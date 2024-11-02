@@ -1,6 +1,7 @@
 package com.saaasssska.leasing.service;
 
 import com.saaasssska.leasing.dto.UserDto;
+import com.saaasssska.leasing.entity.User;
 import com.saaasssska.leasing.mapper.UserMapper;
 import com.saaasssska.leasing.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +13,22 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
     @Override
     public Long createUser(UserDto userDto) {
-        return null;
+        User user = userMapper.toUser(userDto);
+        return userRepo.save(user).getId();
     }
 
     @Override
-    public void deleteUser(Long id) {
-
+    public Long deleteUser(Long id) {
+        userRepo.deleteById(id);
+        return id;
+    }
+    @Override
+    public UserDto getUserById(Long id) {
+        return userMapper.toUserDto(userRepo.findById(id).orElseThrow());
     }
 
     @Override
-    public Long getUserById(Long id) {
-        return null;
-    }
-
-    @Override
-    public Long authUser(UserDto userDto) {
-        return null;
+    public User authUser(UserDto userDto) {
+        return userRepo.findOneByLoginAndPassword(userDto.getLogin(), userDto.getPassword());
     }
 }

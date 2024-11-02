@@ -4,37 +4,53 @@ import com.saaasssska.leasing.dto.LeaseDto;
 import com.saaasssska.leasing.dto.UserDto;
 import com.saaasssska.leasing.entity.Lease;
 import com.saaasssska.leasing.mapper.LeaseMapper;
+import com.saaasssska.leasing.repository.CarRepo;
 import com.saaasssska.leasing.repository.LeaseRepo;
+import com.saaasssska.leasing.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public class LeaseServiceImpl implements LeaseService{
     @Autowired
     private LeaseRepo leaseRepo;
     @Autowired
     private LeaseMapper leaseMapper;
+    @Autowired
+    private CarRepo carRepo;
+    @Autowired
+    private UserRepo userRepo;
     @Override
     public Long createLease(LeaseDto leaseDto) {
-        return null;
+        Lease lease = leaseMapper.toLease(leaseDto);
+        lease.setCar(carRepo.findById(leaseDto.getCar().getId()).orElseThrow());
+        lease.setUser(userRepo.findById(leaseDto.getUser().getId()).orElseThrow());
+        return leaseRepo.save(lease).getId();
     }
 
     @Override
     public Long deleteLease(Long id) {
-        return null;
+        leaseRepo.deleteById(id);
+        return id;
     }
 
     @Override
     public Long updateLease(LeaseDto leaseDto) {
-        return null;
+        Lease lease = leaseRepo.findById(leaseDto.getId()).orElseThrow();
+        lease.setCar(carRepo.findById(leaseDto.getCar().getId()).orElseThrow());
+        lease.setUser(userRepo.findById(leaseDto.getUser().getId()).orElseThrow());
+        lease.setStartDate(leaseDto.getStartDate());
+        lease.setEndDate(leaseDto.getEndDate());
+        return leaseRepo.save(lease).getId();
     }
 
     @Override
-    public Long getLeaseById(Long id) {
-        return null;
+    public LeaseDto getLeaseById(Long id) {
+        return leaseMapper.toLeaseDto(leaseRepo.findById(id).orElseThrow());
     }
 
     @Override
-    public Page<Lease> getLeasesByUser(UserDto userDto) {
-        return null;
+    public Page<LeaseDto> getLeasesByUser(UserDto userDto, Pageable pageable) {
+        return leaseRepo.findAllByUser(userDto.getId(), pageable).map(leaseMapper::toLeaseDto);
     }
 }
