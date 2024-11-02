@@ -17,10 +17,8 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarRepo carRepo;
-
     @Autowired
     private CarMapper carMapper;
-
     @Autowired
     private CompanyRepo companyRepo;
 
