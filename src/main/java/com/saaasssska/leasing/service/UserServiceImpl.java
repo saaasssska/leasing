@@ -7,10 +7,12 @@ import com.saaasssska.leasing.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServiceImpl implements UserService{
+
     @Autowired
     private UserRepo userRepo;
     @Autowired
     private UserMapper userMapper;
+
     @Override
     public Long createUser(UserDto userDto) {
         User user = userMapper.toUser(userDto);
@@ -18,17 +20,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Long deleteUser(Long id) {
+    public void deleteUser(Long id) {
         userRepo.deleteById(id);
-        return id;
     }
+
     @Override
     public UserDto getUserById(Long id) {
         return userMapper.toUserDto(userRepo.findById(id).orElseThrow());
     }
 
     @Override
-    public User authUser(UserDto userDto) {
+    public UserDto authUser(UserDto userDto) {
         return userRepo.findOneByLoginAndPassword(userDto.getLogin(), userDto.getPassword());
     }
 }

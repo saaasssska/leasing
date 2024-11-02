@@ -7,8 +7,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface LeaseService {
     Long createLease(LeaseDto leaseDto);
-    Long deleteLease(Long id);
-    Long updateLease(LeaseDto leaseDto);
+    void deleteLease(Long id);
+    void updateLease(LeaseDto leaseDto);
     LeaseDto getLeaseById(Long id);
     Page<LeaseDto> getLeasesByUser(UserDto userDto, Pageable pageable);
 }

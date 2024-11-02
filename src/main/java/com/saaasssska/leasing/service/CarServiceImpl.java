@@ -5,15 +5,12 @@ import com.saaasssska.leasing.dto.CompanyDto;
 import com.saaasssska.leasing.entity.Car;
 import com.saaasssska.leasing.entity.Company;
 import com.saaasssska.leasing.mapper.CarMapper;
-import com.saaasssska.leasing.mapper.CompanyMapper;
 import com.saaasssska.leasing.repository.CarRepo;
 import com.saaasssska.leasing.repository.CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -35,9 +32,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Long deleteCar(Long id) {
+    public void deleteCar(Long id) {
         carRepo.deleteById(id);
-        return id;
     }
 
     @Override
@@ -52,7 +48,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Page<CarDto> getCarsByCompany(CompanyDto companyDto, Pageable pageable) {
-        return carRepo.findAllByCompany(companyDto.getId(), pageable).map(carMapper::toCarDto);
+        Company company = companyRepo.findById(companyDto.getId()).orElseThrow();
+        return carRepo.findAllByCompany(company, pageable).map(carMapper::toCarDto);
     }
 
 }

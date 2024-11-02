@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public class CompanyServiceImpl implements CompanyService{
+
     @Autowired
     private CompanyRepo companyRepo;
     @Autowired
@@ -23,9 +22,8 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public Long deleteCompany(Long id) {
+    public void deleteCompany(Long id) {
         companyRepo.deleteById(id);
-        return id;
     }
 
     @Override

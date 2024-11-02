@@ -12,12 +12,14 @@ import org.springframework.data.domain.Pageable;
 
 
 public class PaymentServiceImpl implements PaymentService{
+
     @Autowired
     private PaymentRepo paymentRepo;
     @Autowired
     private PaymentMapper paymentMapper;
     @Autowired
     private LeaseRepo leaseRepo;
+
     @Override
     public Long createPayment(PaymentDto paymentDto) {
         Payment payment = paymentMapper.toPayment(paymentDto);
@@ -26,18 +28,17 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
     @Override
-    public Long deletePayment(Long id) {
+    public void deletePayment(Long id) {
         paymentRepo.deleteById(id);
-        return id;
     }
 
     @Override
-    public Long updatePayment(PaymentDto paymentDto) {
+    public void updatePayment(PaymentDto paymentDto) {
         Payment payment = paymentRepo.findById(paymentDto.getId()).orElseThrow();
         payment.setLease(leaseRepo.findById(paymentDto.getLease().getId()).orElseThrow());
         payment.setDate(paymentDto.getDate());
         payment.setAmount(paymentDto.getAmount());
-        return paymentRepo.save(payment).getId();
+        paymentRepo.save(payment);
     }
 
     @Override
