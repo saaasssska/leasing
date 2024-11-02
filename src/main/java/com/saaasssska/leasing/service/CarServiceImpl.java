@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<CarDto> getAllCar(Pageable pageable) {
+    public Page<CarDto> getAllCars(Pageable pageable) {
         return carRepo.findAll(pageable).map(carMapper::toCarDto);
     }
 

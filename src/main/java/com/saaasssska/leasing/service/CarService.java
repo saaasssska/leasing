@@ -9,6 +9,6 @@ public interface CarService {
     Long createCar(CarDto carDto);
     void deleteCar(Long id);
     CarDto getCarById(Long id);
-    Page<CarDto> getAllCar(Pageable pageable);
+    Page<CarDto> getAllCars(Pageable pageable);
     Page<CarDto> getCarsByCompany(CompanyDto companyDto, Pageable pageable);
 }
