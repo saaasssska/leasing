@@ -1,6 +1,5 @@
 package com.saaasssska.leasing.service;
 
-import com.saaasssska.leasing.dto.LeaseDto;
 import com.saaasssska.leasing.dto.PaymentDto;
 import com.saaasssska.leasing.entity.Lease;
 import com.saaasssska.leasing.entity.Payment;
@@ -49,8 +48,9 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
     @Override
-    public Page<PaymentDto> getPaymentsByLease(LeaseDto leaseDto, Pageable pageable) {
-        Lease lease = leaseRepo.findById(leaseDto.getId()).orElseThrow();
+    public Page<PaymentDto> getPaymentsByLease(Long leaseId, Pageable pageable) {
+        Lease lease = leaseRepo.findById(leaseId).orElseThrow();
         return paymentRepo.findAllByLease(lease, pageable).map(paymentMapper::toPaymentDto);
     }
+
 }

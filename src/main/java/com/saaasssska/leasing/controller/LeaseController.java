@@ -16,6 +16,7 @@ public class LeaseController {
     public static final String PATH = "/api/leases";
     public static final String ID_PATH = "/{id}";
     public static final String UPDATE_PARAM = "format=update";
+    public static final String USER_PARAM = "format=user";
 
     @Autowired
     private LeaseService leaseService;
@@ -40,7 +41,7 @@ public class LeaseController {
         leaseService.updateLease(leaseDto);
     }
 
-    @GetMapping
+    @GetMapping(USER_PARAM)
     public List<LeaseDto> getLeasesByUser(@RequestParam Long userId) {
         return leaseService.getLeasesByUserId(userId);
     }

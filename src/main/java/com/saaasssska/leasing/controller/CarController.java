@@ -18,6 +18,7 @@ public class CarController {
 
     public static final String PATH = "/api/cars";
     public static final String ID_PATH = "/{id}";
+    public static final String COMPANY_PARAM = "format=company";
 
     @Autowired
     private CarService carService;
@@ -37,7 +38,7 @@ public class CarController {
         carService.deleteCar(id);
     }
 
-    @GetMapping
+    @GetMapping(params = COMPANY_PARAM)
     List<CarDto> getCarsByCompany(@RequestParam Long companyId) {
         return carService.getCarsByCompanyId(companyId);
     }
@@ -46,7 +47,4 @@ public class CarController {
     Long create(@RequestBody CarDto carDto) {
         return carService.createCar(carDto);
     }
-
-
-
 }
