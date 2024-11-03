@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto authUser(UserDto userDto) {
-        return userRepo.findOneByLoginAndPassword(userDto.getLogin(), userDto.getPassword());
+    public Long authUser(UserDto userDto) {
+        return userRepo.findOneByLoginAndPassword(userDto.getLogin(), userDto.getPassword()).getId();
     }
 }

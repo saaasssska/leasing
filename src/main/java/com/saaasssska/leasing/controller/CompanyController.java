@@ -1,7 +1,6 @@
 package com.saaasssska.leasing.controller;
 
 import com.saaasssska.leasing.dto.CompanyDto;
-import com.saaasssska.leasing.repository.CompanyRepo;
 import com.saaasssska.leasing.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,11 +18,9 @@ public class CompanyController {
 
     @Autowired
     private CompanyService companyService;
-    @Autowired
-    private CompanyRepo companyRepo;
 
     @GetMapping(ID_PATH)
-    public CompanyDto getCompanyById(@RequestParam Long id) {
+    public CompanyDto getCompanyById(@PathVariable Long id) {
         return companyService.getCompanyById(id);
     }
 

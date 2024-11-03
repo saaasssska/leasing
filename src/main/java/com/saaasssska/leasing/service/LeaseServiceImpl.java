@@ -1,7 +1,6 @@
 package com.saaasssska.leasing.service;
 
 import com.saaasssska.leasing.dto.LeaseDto;
-import com.saaasssska.leasing.dto.UserDto;
 import com.saaasssska.leasing.entity.Lease;
 import com.saaasssska.leasing.entity.User;
 import com.saaasssska.leasing.mapper.LeaseMapper;
@@ -9,9 +8,9 @@ import com.saaasssska.leasing.repository.CarRepo;
 import com.saaasssska.leasing.repository.LeaseRepo;
 import com.saaasssska.leasing.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LeaseServiceImpl implements LeaseService{
@@ -54,8 +53,8 @@ public class LeaseServiceImpl implements LeaseService{
     }
 
     @Override
-    public Page<LeaseDto> getLeasesByUser(UserDto userDto, Pageable pageable) {
-        User user = userRepo.findById(userDto.getId()).orElseThrow();
-        return leaseRepo.findAllByUser(user, pageable).map(leaseMapper::toLeaseDto);
+    public List<LeaseDto> getLeasesByUserId(Long id) {
+        User user = userRepo.findById(id).orElseThrow();
+        return leaseRepo.findAllByUser(user).stream().map(leaseMapper::toLeaseDto).toList();
     }
 }

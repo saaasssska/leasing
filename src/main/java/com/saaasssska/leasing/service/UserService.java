@@ -6,5 +6,5 @@ public interface UserService {
     Long createUser(UserDto userDto);
     void deleteUser(Long id);
     UserDto getUserById(Long id);
-    UserDto authUser(UserDto userDto);
+    Long authUser(UserDto userDto);
 }

@@ -1,13 +1,11 @@
 package com.saaasssska.leasing.controller;
 
 import com.saaasssska.leasing.dto.LeaseDto;
-import com.saaasssska.leasing.dto.UserDto;
-import com.saaasssska.leasing.repository.LeaseRepo;
 import com.saaasssska.leasing.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.saaasssska.leasing.controller.LeaseController.PATH;
 
@@ -15,17 +13,15 @@ import static com.saaasssska.leasing.controller.LeaseController.PATH;
 @CrossOrigin(origins = "*")
 @RequestMapping(PATH)
 public class LeaseController {
-    public static final String PATH = "/api/lease";
+    public static final String PATH = "/api/leases";
     public static final String ID_PATH = "/{id}";
     public static final String UPDATE_PARAM = "format=update";
 
     @Autowired
     private LeaseService leaseService;
-    @Autowired
-    private LeaseRepo leaseRepo;
 
     @GetMapping(ID_PATH)
-    public LeaseDto getLeaseById(@RequestParam Long id) {
+    public LeaseDto getLeaseById(@PathVariable Long id) {
         return leaseService.getLeaseById(id);
     }
 
@@ -45,7 +41,7 @@ public class LeaseController {
     }
 
     @GetMapping
-    public Page<LeaseDto> getLeasesByUser(@RequestParam Long userId, UserDto userDto, Pageable pageable) {
-        return leaseService.getLeasesByUser(userDto, pageable);
+    public List<LeaseDto> getLeasesByUser(@RequestParam Long userId) {
+        return leaseService.getLeasesByUserId(userId);
     }
 }

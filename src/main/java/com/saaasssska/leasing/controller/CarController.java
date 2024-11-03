@@ -1,13 +1,13 @@
 package com.saaasssska.leasing.controller;
 
 import com.saaasssska.leasing.dto.CarDto;
-import com.saaasssska.leasing.dto.CompanyDto;
-import com.saaasssska.leasing.repository.CarRepo;
 import com.saaasssska.leasing.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.saaasssska.leasing.controller.CarController.PATH;
 
@@ -21,11 +21,9 @@ public class CarController {
 
     @Autowired
     private CarService carService;
-    @Autowired
-    private CarRepo carRepo;
 
     @GetMapping(ID_PATH)
-    CarDto getCarById(@RequestParam Long id) {
+    CarDto getCarById(@PathVariable Long id) {
         return carService.getCarById(id);
     }
 
@@ -40,8 +38,8 @@ public class CarController {
     }
 
     @GetMapping
-    Page<CarDto> getCarsByCompany(@RequestParam String companyId, CompanyDto companyDto, Pageable pageable) {
-        return carService.getCarsByCompany(companyDto, pageable);
+    List<CarDto> getCarsByCompany(@RequestParam Long companyId) {
+        return carService.getCarsByCompanyId(companyId);
     }
 
     @PostMapping
