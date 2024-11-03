@@ -1,7 +1,6 @@
 package com.saaasssska.leasing.service;
 
 import com.saaasssska.leasing.dto.CarDto;
-import com.saaasssska.leasing.dto.CompanyDto;
 import com.saaasssska.leasing.entity.Car;
 import com.saaasssska.leasing.entity.Company;
 import com.saaasssska.leasing.mapper.CarMapper;
@@ -11,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -40,14 +41,14 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<CarDto> getAllCar(Pageable pageable) {
+    public Page<CarDto> getAllCars(Pageable pageable) {
         return carRepo.findAll(pageable).map(carMapper::toCarDto);
     }
 
     @Override
-    public Page<CarDto> getCarsByCompany(CompanyDto companyDto, Pageable pageable) {
-        Company company = companyRepo.findById(companyDto.getId()).orElseThrow();
-        return carRepo.findAllByCompany(company, pageable).map(carMapper::toCarDto);
+    public List<CarDto> getCarsByCompanyId(Long id) {
+        Company company = companyRepo.findById(id).orElseThrow();
+        return carRepo.findAllByCompany(company).stream().map(carMapper::toCarDto).toList();
     }
 
 }

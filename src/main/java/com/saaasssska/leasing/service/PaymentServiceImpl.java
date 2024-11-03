@@ -1,6 +1,5 @@
 package com.saaasssska.leasing.service;
 
-import com.saaasssska.leasing.dto.LeaseDto;
 import com.saaasssska.leasing.dto.PaymentDto;
 import com.saaasssska.leasing.entity.Lease;
 import com.saaasssska.leasing.entity.Payment;
@@ -10,8 +9,9 @@ import com.saaasssska.leasing.repository.PaymentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class PaymentServiceImpl implements PaymentService{
 
     @Autowired
@@ -48,8 +48,9 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
     @Override
-    public Page<PaymentDto> getPaymentsByLease(LeaseDto leaseDto, Pageable pageable) {
-        Lease lease = leaseRepo.findById(leaseDto.getId()).orElseThrow();
+    public Page<PaymentDto> getPaymentsByLease(Long leaseId, Pageable pageable) {
+        Lease lease = leaseRepo.findById(leaseId).orElseThrow();
         return paymentRepo.findAllByLease(lease, pageable).map(paymentMapper::toPaymentDto);
     }
+
 }

@@ -8,5 +8,5 @@ public interface CompanyService {
     Long createCompany(CompanyDto companyDto);
     void deleteCompany(Long id);
     CompanyDto getCompanyById(Long id);
-    Page<CompanyDto> getAllCompany(Pageable pageable);
+    Page<CompanyDto> getAllCompanies(Pageable pageable);
 }

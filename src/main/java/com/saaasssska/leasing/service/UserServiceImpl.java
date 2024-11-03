@@ -5,7 +5,9 @@ import com.saaasssska.leasing.entity.User;
 import com.saaasssska.leasing.mapper.UserMapper;
 import com.saaasssska.leasing.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto authUser(UserDto userDto) {
-        return userRepo.findOneByLoginAndPassword(userDto.getLogin(), userDto.getPassword());
+    public Long authUser(UserDto userDto) {
+        return userRepo.findOneByLoginAndPassword(userDto.getLogin(), userDto.getPassword()).getId();
     }
 }
