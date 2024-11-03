@@ -13,6 +13,7 @@ import static com.saaasssska.leasing.controller.UserController.PATH;
 public class UserController {
     public static final String PATH = "/api/users";
     public static final String ID_PATH = "/{id}";
+    public static final String AUTH_PATH = "/auth";
 
     @Autowired
     private UserService userService;
@@ -32,7 +33,7 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @PostMapping
+    @PostMapping(AUTH_PATH)
     public Long authUser(@RequestParam Long userId, UserDto userDto) {
         return userService.authUser(userDto);
     }
