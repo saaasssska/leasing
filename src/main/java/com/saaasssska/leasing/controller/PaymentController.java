@@ -1,5 +1,6 @@
 package com.saaasssska.leasing.controller;
 
+import com.saaasssska.leasing.dto.LeaseDto;
 import com.saaasssska.leasing.dto.PaymentDto;
 import com.saaasssska.leasing.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ public class PaymentController {
     public static final String PATH = "/api/payments";
     public static final String ID_PATH = "/{id}";
     public static final String UPDATE_PARAM = "format=update";
-    public static final String LEASE_PARAM = "format=lease";
 
     @Autowired
     private PaymentService paymentService;
@@ -41,8 +41,8 @@ public class PaymentController {
         paymentService.updatePayment(paymentDto);
     }
 
-    @GetMapping(LEASE_PARAM)
-    public Page<PaymentDto> getPaymentsByLease(@RequestParam Long leaseId, Pageable pageable) {
-        return paymentService.getPaymentsByLease(leaseId, pageable);
+    @GetMapping
+    public Page<PaymentDto> getPaymentsByLease(@RequestParam Long leaseId, LeaseDto leaseDto, Pageable pageable) {
+        return paymentService.getPaymentsByLease(leaseDto, pageable);
     }
 }
