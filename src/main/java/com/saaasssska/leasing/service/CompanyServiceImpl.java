@@ -32,7 +32,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     @Override
-    public Page<CompanyDto> getAllCompany(Pageable pageable) {
+    public Page<CompanyDto> getAllCompanies(Pageable pageable) {
         return companyRepo.findAll(pageable).map(companyMapper::toCompanyDto);
     }
 }

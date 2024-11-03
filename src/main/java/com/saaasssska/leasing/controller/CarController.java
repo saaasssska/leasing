@@ -1,6 +1,7 @@
 package com.saaasssska.leasing.controller;
 
 import com.saaasssska.leasing.dto.CarDto;
+import com.saaasssska.leasing.dto.CompanyDto;
 import com.saaasssska.leasing.repository.CarRepo;
 import com.saaasssska.leasing.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,17 @@ public class CarController {
     void delete(@PathVariable Long id) {
         carService.deleteCar(id);
     }
+
+    @GetMapping
+    Page<CarDto> getCarsByCompany(@RequestParam String companyId, CompanyDto companyDto, Pageable pageable) {
+        return carService.getCarsByCompany(companyDto, pageable);
+    }
+
+    @PostMapping
+    Long create(@RequestBody CarDto carDto) {
+        return carService.createCar(carDto);
+    }
+
+
 
 }
